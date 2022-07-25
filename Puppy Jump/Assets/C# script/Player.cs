@@ -1,48 +1,54 @@
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
-    public float jump = 6.4f;
-    public GameObject Restart;
-    private bool forjump = true;
+    [SerializeField] private float jump;
+    private int jumpcnt;
+
+    private bool isfloor = true;
     private bool forstart = false;
+
     private Animator animator;
-    private int jumppoint;
-    [SerializeField] private GameObject jumpplus;
-    private Item i;
+    
+    [SerializeField] private GameObject chargeimage;
+    [SerializeField] private GameObject Restart;
+
+    private void Awake()
+    {
+        Time.timeScale = 0;
+    }
     private void Start()
     {
-        i = FindObjectOfType<Item>();
-        jumppoint = 1;
-        Time.timeScale = 0;
         animator = GetComponent<Animator>();
+        jump = 17f;
+        jumpcnt = 1;
     }
     void Update()
     {
-        Move();
+        Jump();
 
-        if (forjump == false)
+        if (isfloor == false)
             animator.SetBool("IsJump", true);
         else
             animator.SetBool("IsJump", false);
     }
-    private void Move()
+    void Gamestart()
     {
-        
-        if (jumppoint > 0)
+        if (forstart == false)
+        {
+            forstart = true;
+            Time.timeScale = 1;
+        }
+    }
+    private void Jump()
+    {
+        if (jumpcnt > 0)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                forjump = false;
+                isfloor = false;
                 GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jump);
-                jumppoint--;
-
-                if (forstart == false)
-                {
-                    forstart = true;
-                    Time.timeScale = 1;
-                }
-
+                jumpcnt--;
+                Gamestart();
             }
         }
     }
@@ -50,31 +56,28 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("floor"))
         {
-            forjump = true;
-            if (jumppoint == 0)
+            isfloor = true;
+            if (jumpcnt == 0)
             {
-                jumppoint = 1;
-                jumpplus.SetActive(false);
+                jumpcnt = 1;
+                chargeimage.SetActive(false);
             }
             else
-                jumppoint = 2;
-        }
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            
-            //Time.timeScale = 0;
-           // Restart.SetActive(true);
+                jumpcnt = 2;
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Item"))
         {
-            jumpplus.SetActive(true);
-            jumppoint = 2;
-            i.forspawn = true;
+            chargeimage.SetActive(true);
+            jumpcnt = 2;
             Destroy(collision.gameObject);
+        }
+        if (collision.CompareTag("Enemy"))
+        {
+            Time.timeScale = 0;
+            Restart.SetActive(true);
         }
     }
 }

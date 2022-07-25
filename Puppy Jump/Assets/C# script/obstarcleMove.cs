@@ -1,7 +1,7 @@
 using UnityEngine;
 public class obstarcleMove : MonoBehaviour
 {
-    public float speed;
+    [SerializeField] private float speed;
     void Update()
     {
         Move();
@@ -10,9 +10,9 @@ public class obstarcleMove : MonoBehaviour
     {
         transform.Translate(Vector3.left * speed * Time.deltaTime);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if (collision.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }

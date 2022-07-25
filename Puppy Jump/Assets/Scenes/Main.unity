@@ -152,7 +152,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -286,12 +286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bcc73a5bc07724dbdd378376dbf106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableSpawn: 1
-  Enemy: {fileID: 5282405496481873702, guid: 8f72bd998a0338d4e8b4725bc5a4f712, type: 3}
-  LEnemy: {fileID: 5029327479281093268, guid: 809da5868bfaab14c977c6a3fe4ea965, type: 3}
-  AEnemy: {fileID: 8514226972112051504, guid: 77031d61a682dd04c81df068dd6bb5cc, type: 3}
-  LAEnemy: {fileID: 7412452372575260170, guid: b71d0a8b80e26d84e89bb57744cbb08f, type: 3}
-  time: 2.6
+  Enemy:
+  - {fileID: 5282405496481873702, guid: 8f72bd998a0338d4e8b4725bc5a4f712, type: 3}
+  - {fileID: 5029327479281093268, guid: 809da5868bfaab14c977c6a3fe4ea965, type: 3}
+  - {fileID: 8514226972112051504, guid: 77031d61a682dd04c81df068dd6bb5cc, type: 3}
+  - {fileID: 7412452372575260170, guid: b71d0a8b80e26d84e89bb57744cbb08f, type: 3}
 --- !u!4 &68753032
 Transform:
   m_ObjectHideFlags: 0
@@ -319,8 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162666d07daedb246a6f6b431785a9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forspawn: 0
-  spawncnt: 0
   item: {fileID: 2912974135669017564, guid: d057601a9fb6e2042b050cd83d4e7961, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -633,9 +630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0deef7cba218197409ad7085cde5d46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: 17
+  jump: 0
+  chargeimage: {fileID: 1801011826}
   Restart: {fileID: 1590370396}
-  jumpplus: {fileID: 1801011826}
 --- !u!95 &1015507054
 Animator:
   serializedVersion: 4
@@ -1247,7 +1244,7 @@ GameObject:
   - component: {fileID: 1801011829}
   - component: {fileID: 1801011828}
   m_Layer: 5
-  m_Name: JumpPlus
+  m_Name: ChargeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,11 +1265,11 @@ RectTransform:
   m_Father: {fileID: 1584699461}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -539, y: 189}
-  m_SizeDelta: {x: 82.766, y: 80.8422}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 19.617004, y: -20.578903}
+  m_SizeDelta: {x: 82.76599, y: 80.84219}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1801011828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,7 +1381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad58ab054ed51842bafe88f14217bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Text: {fileID: 1319125547}
   point: 0
   PointText: {fileID: 1319125549}
   HI: {fileID: 2046400707}
@@ -1504,10 +1500,10 @@ RectTransform:
   m_Father: {fileID: 1584699461}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345, y: 171.68001}
-  m_SizeDelta: {x: 333.5571, y: 131.85}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -228, y: -78.325}
+  m_SizeDelta: {x: 333.55713, y: 131.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046400707
 MonoBehaviour:
